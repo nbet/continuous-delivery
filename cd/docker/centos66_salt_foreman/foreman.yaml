@@ -1,0 +1,11 @@
+---
+:proto: https
+:host: saltmaster.devops.company.com
+:port: 443
+:ssl_ca: "/var/lib/puppet/ssl/certs/ca.pem"
+:ssl_key: "/var/lib/puppet/ssl/private_keys/saltmaster.devops.company.com.pem"
+:ssl_cert: "/var/lib/puppet/ssl/certs/saltmaster.devops.company.com.pem"
+:timeout:  10
+:salt:  /usr/bin/salt
+:upload_grains:  true
+

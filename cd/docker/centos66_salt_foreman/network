@@ -1,0 +1,2 @@
+NETWORKING=yes
+HOSTNAME=saltmaster.devops.company.com

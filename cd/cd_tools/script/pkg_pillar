@@ -1,0 +1,17 @@
+#!/bin/sh
+
+TARGET=$1
+
+CMD_PATH="$( cd "$( dirname "$0"  )" && pwd  )"
+foreman-node $TARGET > result
+repo_addr=`cat result |egrep repo_addr |cut -d: -f2`
+bundle_ver=`cat result |egrep bundle_ver |cut -d: -f2`
+environment=`cat result |egrep environment |cut -d: -f2`
+PROJECT_NAME=`cat result |egrep "^-\s" |head -1 |cut -d" " -f2| cut -d"_" -f1`
+
+python $CMD_PATH/fetch_bundle.py $repo_addr $bundle_ver $environment $PROJECT_NAME
+python $CMD_PATH/fetch_config.py $repo_addr $bundle_ver $environment $PROJECT_NAME
+ver_list=`python $CMD_PATH/query_module_version.py $bundle_ver $environment $PROJECT_NAME`
+
+echo "{$ver_list }"
+

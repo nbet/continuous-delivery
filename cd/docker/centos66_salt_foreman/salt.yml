@@ -1,0 +1,11 @@
+---
+:enabled: https
+:autosign_file: /etc/salt/autosign.conf
+:salt_command_user: root
+# Some features require using the Salt API - such as listing environments and retrieving state info
+:use_api: true
+:api_url: https://saltmaster.devops.company.com:9191
+:api_auth: pam
+:api_username: saltuser
+:api_password: saltpassword
+
