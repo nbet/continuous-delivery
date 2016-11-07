@@ -1,0 +1,21 @@
+#!/usr/bin/expect -f
+
+set src_path [lindex $argv 0]
+set dst_addr [lindex $argv 1]
+set name [lindex $argv 2]
+set user [lindex $argv 3]
+set passwd [lindex $argv 4]
+set dst_path [lindex $argv 5]
+set timeout -1
+
+spawn bash -c "scp -r -p $src_path/* $user@$dst_addr:$dst_path/$name"
+
+expect {
+  "yes/no" { send "yes\r";exp_continue }
+  "password:" { send "$passwd\r" } 
+}
+
+
+expect {
+  "password:" { send "$passwd\r" }
+}
